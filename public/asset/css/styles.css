@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bar-size: 35px;
+}
+
+@keyframes width-changing {
+    0%{
+        width: 0;
+    }
+
+    100%{
+        width: 100vw;
+    }
+}
+
+body{
+    height: 100%;
+}
+
+
+.bar{
+    display: flex;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: var(--bar-size);
+    height: var(--bar-size);
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar span{
+    width: 100%;
+    height: calc(calc(var(--bar-size) / 3) - calc(4px + calc(var(--bar-size) / 30)));
+    background-color: black;
+    margin: 2px 0;
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+
+
+
+
+/*Header*/
+/*NAV*/
+
+header{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+}
+header .nav-panel {
+    height: 100vh;
+    width: 0;
+    display: flex;
+    background-color: black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    transition: width 0.5s;
+}
+
+
+
+.nav-panel nav ul{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-panel nav ul li{
+    position: relative;
+    margin: 1.5rem 0;
+    list-style: none;
+    width: fit-content;
+}
+
+ul li a{
+    font-family: 'Roboto', sans-serif;
+    /*font-weight: bold;*/
+    font-size: 4em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.7);
+    line-height: 1em;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+ul li a::before{
+    content: attr(data-text);
+    position: absolute;
+    color: white;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.7s;
+    border-right: 8px solid white;
+    margin-left: -3px;
+}
+
+ul li a:hover::before{
+    width: 100%;
+}
+
+
+
+.white-bar{
+    background-color: white!important;
+}
+
+
+.off :nth-child(1){
+    transform: rotate(-45deg);
+}
+
+.off :nth-child(2){
+    opacity: 0;
+}
+
+.off :nth-child(3){
+    transform: rotate(45deg);
+}
+
+
+.ending-flex{
+    align-items: center!important;
+}
+
+.active{
+    width: 100vw!important;
+    justify-content: center!important;
+}
+
+
+
+/*===========================================*/
+/*MAIN*/
+
+.content{
+    /*background-color: white;*/
+}
+
+.content .library{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin-top: 100px;
+}
+
+.content .library .library-item{
+    display: flex;
+    width: 90%;
+    border-radius: 5px;
+    height: 250px;
+    margin: 10px auto;
+    gap: 2rem;
+    position: relative;
+}
+
+.content .library .library-item img{
+    position: absolute;
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+}
+
+/*.select-click{*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    color: transparent;*/
+/*    z-index: 1000;*/
+/*}*/
+
+
+
+.content .library .library-item .be-full{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.content .library .library-item .be-full:hover{
+    opacity: 1;
+}
+
+.rc-text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: white;
+    transition: width 0.5s;
+    white-space: nowrap;
+}
+
+
+
+.content .library .library-item .be-full:hover .rc-text{
+    width: 100%;
+}
+
+
+section{
+    display: none;
+}
+
+.focus{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.focus img{
+    width: 50%;
+    /*height: 50%;*/
+    object-fit: contain;
+}
+
+
+@media screen and (max-width: 400px){
+    .content .library{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+@media (prefers-color-scheme: dark){
+
+}
+
+@media (prefers-color-scheme: light){
+
+}

@@ -1,0 +1,12 @@
+const siteModel = require('../models/siteModel');
+
+
+function index(req, res) {
+  res.render('index', {});
+}
+
+
+
+module.exports = {
+    index
+}
