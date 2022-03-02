@@ -1,24 +1,29 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const database = require('../db/database');
 
-// Create Schema with name, description, image
-const SiteSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  image: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+// Get all tasks from database
+const getProjects = (callback) => {
+  const sql = `SELECT * FROM projects`;
+  database.appDatabase.all(sql, [], (error, rows) => {
+    if (error) {
+      console.error(error.message);
+    }
+    callback(rows);
+  });
+};
 
-module.exports = mongoose.model('Site', SiteSchema);
+
+const createProject = (data, callback) => {
+  const sql = `INSERT INTO projects VALUES (NULL, '${data["name"]}', '${data["description"]}', '${data["image"] || "/asset/img/p_1.jpg"}', '${data["main_color"]}', '${data["text_color"]}')`;
+  database.appDatabase.run(sql, [], (error, rows) => {
+    if (error) {
+      console.error(error.message);
+    }
+    callback(rows);
+  });
+};
+
+// Export models
+module.exports = {
+  getProjects,
+  createProject
+};

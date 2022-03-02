@@ -10,6 +10,8 @@ const mainRoutes = require("./routes/mainRoutes")
 const port = process.env.PORT || 3000
 const app = express()
 
+
+
 //HandleBars Middleware
 app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -24,6 +26,7 @@ app.use(express.static("public"))
 
 
 app.use('/', mainRoutes)
+
 
 module.exports = app;
 
